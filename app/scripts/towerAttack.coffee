@@ -1,10 +1,16 @@
 define [
     'game'
+    'texture'
     'sprites/minion'
-], (Game, Minion) ->
+    'sprites/towerSection'
+], (Game, Texture, Minion, TowerSection) ->
     class TowerAttack extends Game
         init: ->
-            @minion = new Minion 10, 50
+            @backgroundTexture = new Texture 'background'
+            @minion = new Minion 80, 420
+            @towerSection = new TowerSection 10, 360
 
         draw: ->
+            @renderer.drawTexture @backgroundTexture, 0, 0, @canvasWidth, @canvasHeight
+            @towerSection.draw @renderer
             @minion.draw @renderer

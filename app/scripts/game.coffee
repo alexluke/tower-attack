@@ -7,6 +7,8 @@ define [
             @renderer = new CanvasRenderer canvasEl
             @x = @renderer.canvas.offsetLeft
             @y = @renderer.canvas.offsetTop
+            @canvasWidth = @renderer.canvas.width
+            @canvasHeight = @renderer.canvas.height
 
             @mouse =
                 x: 0
