@@ -8,6 +8,8 @@ define ->
         draw: (renderer) ->
             renderer.drawTexture @texture, @x, @y, @width, @height
 
+        update: (delta) ->
+
         intersects: (otherSprite) ->
             withinX = @x + @width > otherSprite.x and @x < otherSprite.x + otherSprite.width
             withinY = @y + @height > otherSprite.y and @y < otherSprite.y + otherSprite.height

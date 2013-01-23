@@ -52,7 +52,7 @@ define [
                 now = (new Date).getTime()
                 delta = (now - @lastUpdate) / 1000
                 @lastUpdate = now
-                @update delta
+                @update delta, now
             setInterval updateTick, 1000 / 60
 
         init: ->
