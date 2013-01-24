@@ -1,27 +1,21 @@
 define [
     'game'
     'texture'
-    'sprites/minion'
-    'sprites/towerSection'
-], (Game, Texture, Minion, TowerSection) ->
+    'player'
+], (Game, Texture, Player) ->
     class TowerAttack extends Game
         init: ->
             @backgroundTexture = new Texture 'background'
-            @towerSection = new TowerSection 10, 360
-            @minions = []
-            @lastSpawn = 0
-            @spawnDelay = 1000
+            @player1 = new Player 'right'
 
         draw: ->
             @renderer.drawTexture @backgroundTexture, 0, 0, @canvasWidth, @canvasHeight
-            @towerSection.draw @renderer
+            @player1.tower[0].draw @renderer
 
-            minion.draw @renderer for minion in @minions
+            minion.draw @renderer for minion in @player1.minions
 
         update: (delta, now) ->
-            minion.update delta for minion in @minions
+            minion.update delta for minion in @player1.minions
 
-            if @mouse.leftButton and now - @lastSpawn > @spawnDelay
-                minion = new Minion @towerSection.x + @towerSection.width / 2, @towerSection.y + @towerSection.height
-                @minions.push minion
-                @lastSpawn = now
+            if @mouse.leftButton
+                @player1.spawnMinion now
